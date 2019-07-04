@@ -100,38 +100,38 @@ class Renderer: NSObject {
   func createScene() {
     // light source
     var transform = translate(tx: 0, ty: 1, tz: 0.3) * scale(sx: 0.5, sy: 1.98, sz: 0.5)
-    createCube(faceMask: .positiveY, color: float3(1), transform: transform, inwardNormals: true, triangleMask: TRIANGLE_MASK_LIGHT)
+    createCube(faceMask: .positiveY, color: SIMD3<Float>(repeating: 1), transform: transform, inwardNormals: true, triangleMask: TRIANGLE_MASK_LIGHT)
     // top wall
     transform = translate(tx: 0, ty: 1, tz: 0) * scale(sx: 2, sy: 2, sz: 2)
-    createCube(faceMask: .positiveY, color: float3(0.02, 0.4, 0.02), transform: transform, inwardNormals: true, triangleMask: TRIANGLE_MASK_GEOMETRY)
+    createCube(faceMask: .positiveY, color: SIMD3<Float>(0.02, 0.4, 0.02), transform: transform, inwardNormals: true, triangleMask: TRIANGLE_MASK_GEOMETRY)
     // bottom and back walls
-    createCube(faceMask: [.negativeY, .negativeZ], color: float3(1.0), transform: transform, inwardNormals: true, triangleMask: TRIANGLE_MASK_GEOMETRY)
+    createCube(faceMask: [.negativeY, .negativeZ], color: SIMD3<Float>(repeating: 1.0), transform: transform, inwardNormals: true, triangleMask: TRIANGLE_MASK_GEOMETRY)
     // left wall
-    createCube(faceMask: .negativeX, color: float3(1.0, 0.02, 0.02), transform: transform, inwardNormals: true, triangleMask: TRIANGLE_MASK_GEOMETRY)
+    createCube(faceMask: .negativeX, color: SIMD3<Float>(1.0, 0.02, 0.02), transform: transform, inwardNormals: true, triangleMask: TRIANGLE_MASK_GEOMETRY)
     // right wall
-    createCube(faceMask: [.positiveX], color: float3(0.02, 0.02, 0.2), transform: transform, inwardNormals: true, triangleMask: TRIANGLE_MASK_GEOMETRY)
+    createCube(faceMask: [.positiveX], color: SIMD3<Float>(0.02, 0.02, 0.2), transform: transform, inwardNormals: true, triangleMask: TRIANGLE_MASK_GEOMETRY)
     // short box
-    transform = translate(tx: 0.35, ty: 0.3, tz: 0.3725) * rotate(radians: -0.3, axis: float3(0.0, 1.0, 0.0)) * scale(sx: 0.6, sy: 0.6, sz: 0.6)
-    createCube(faceMask: .all, color: float3(1.0, 1.0, 0.3), transform: transform, inwardNormals: false, triangleMask: TRIANGLE_MASK_GEOMETRY)
+    transform = translate(tx: 0.35, ty: 0.3, tz: 0.3725) * rotate(radians: -0.3, axis: SIMD3<Float>(0.0, 1.0, 0.0)) * scale(sx: 0.6, sy: 0.6, sz: 0.6)
+    createCube(faceMask: .all, color: SIMD3<Float>(1.0, 1.0, 0.3), transform: transform, inwardNormals: false, triangleMask: TRIANGLE_MASK_GEOMETRY)
     // tall box
-    transform = translate(tx: -0.4, ty: 0.6, tz: -0.29) * rotate(radians: 0.3, axis: float3(0.0, 1.0, 0.0)) * scale(sx: 0.6, sy: 1.2, sz: 0.6)
-    createCube(faceMask: .all, color: float3(1.0, 1.0, 0.3), transform: transform, inwardNormals: false, triangleMask: TRIANGLE_MASK_GEOMETRY)
+    transform = translate(tx: -0.4, ty: 0.6, tz: -0.29) * rotate(radians: 0.3, axis: SIMD3<Float>(0.0, 1.0, 0.0)) * scale(sx: 0.6, sy: 1.2, sz: 0.6)
+    createCube(faceMask: .all, color: SIMD3<Float>(1.0, 1.0, 0.3), transform: transform, inwardNormals: false, triangleMask: TRIANGLE_MASK_GEOMETRY)
   }
   
   func createBuffers() {
     let uniformBufferSize = alignedUniformsSize * maxFramesInFlight
-    uniformBuffer = device.makeBuffer(length: uniformBufferSize, options: .storageModeManaged)
-    randomBuffer = device.makeBuffer(length: 256 * MemoryLayout<float2>.stride * maxFramesInFlight, options: .storageModeManaged)
+    uniformBuffer = device.makeBuffer(length: uniformBufferSize)
+    randomBuffer = device.makeBuffer(length: 256 * MemoryLayout<SIMD2<Float>>.stride * maxFramesInFlight)
     
-    vertexPositionBuffer = device.makeBuffer(bytes: &vertices, length: vertices.count * MemoryLayout<float3>.stride, options: .storageModeManaged)
-    vertexColorBuffer = device.makeBuffer(bytes: &colors, length: colors.count * MemoryLayout<float3>.stride, options: .storageModeManaged)
-    vertexNormalBuffer = device.makeBuffer(bytes: &normals, length: normals.count * MemoryLayout<float3>.stride, options: .storageModeManaged)
-    triangleMaskBuffer = device.makeBuffer(bytes: &masks, length: masks.count * MemoryLayout<uint>.stride, options: .storageModeManaged)
+    vertexPositionBuffer = device.makeBuffer(bytes: &vertices, length: vertices.count * MemoryLayout<SIMD3<Float>>.stride)
+    vertexColorBuffer = device.makeBuffer(bytes: &colors, length: colors.count * MemoryLayout<SIMD3<Float>>.stride)
+    vertexNormalBuffer = device.makeBuffer(bytes: &normals, length: normals.count * MemoryLayout<SIMD3<Float>>.stride)
+    triangleMaskBuffer = device.makeBuffer(bytes: &masks, length: masks.count * MemoryLayout<uint>.stride)
     
-    vertexPositionBuffer?.didModifyRange(0..<(vertexPositionBuffer?.length)!)
-    vertexColorBuffer?.didModifyRange(0..<(vertexColorBuffer?.length)!)
-    vertexNormalBuffer?.didModifyRange(0..<(vertexNormalBuffer?.length)!)
-    triangleMaskBuffer?.didModifyRange(0..<(triangleMaskBuffer?.length)!)
+    //vertexPositionBuffer?.didModifyRange(0..<(vertexPositionBuffer?.length)!)
+    //vertexColorBuffer?.didModifyRange(0..<(vertexColorBuffer?.length)!)
+    //vertexNormalBuffer?.didModifyRange(0..<(vertexNormalBuffer?.length)!)
+    //triangleMaskBuffer?.didModifyRange(0..<(triangleMaskBuffer?.length)!)
   }
   
   func createIntersector() {
@@ -151,15 +151,15 @@ class Renderer: NSObject {
     uniformBufferOffset = alignedUniformsSize * uniformBufferIndex
     let pointer = uniformBuffer!.contents().advanced(by: uniformBufferOffset)
     let uniforms = pointer.bindMemory(to: Uniforms.self, capacity: 1)
-    uniforms.pointee.camera.position = float3(0.0, 1.0, 3.38)
-    uniforms.pointee.camera.forward = float3(0.0, 0.0, -1.0)
-    uniforms.pointee.camera.right = float3(1.0, 0.0, 0.0)
-    uniforms.pointee.camera.up = float3(0.0, 1.0, 0.0)
-    uniforms.pointee.light.position = float3(0.0, 1.98, 0.0)
-    uniforms.pointee.light.forward = float3(0.0, -1.0, 0.0)
-    uniforms.pointee.light.right = float3(0.25, 0.0, 0.0)
-    uniforms.pointee.light.up = float3(0.0, 0.0, 0.25)
-    uniforms.pointee.light.color = float3(12.0)
+    uniforms.pointee.camera.position = SIMD3<Float>(0.0, 1.0, 3.38)
+    uniforms.pointee.camera.forward = SIMD3<Float>(0.0, 0.0, -1.0)
+    uniforms.pointee.camera.right = SIMD3<Float>(1.0, 0.0, 0.0)
+    uniforms.pointee.camera.up = SIMD3<Float>(0.0, 1.0, 0.0)
+    uniforms.pointee.light.position = SIMD3<Float>(0.0, 1.98, 0.0)
+    uniforms.pointee.light.forward = SIMD3<Float>(0.0, -1.0, 0.0)
+    uniforms.pointee.light.right = SIMD3<Float>(0.25, 0.0, 0.0)
+    uniforms.pointee.light.up = SIMD3<Float>(0.0, 0.0, 0.25)
+    uniforms.pointee.light.color = SIMD3<Float>(repeating: 12.0)
     
     let fieldOfView = 45.0 * (Float.pi / 180.0)
     let aspectRatio = Float(size.width) / Float(size.height)
@@ -173,15 +173,15 @@ class Renderer: NSObject {
     uniforms.pointee.blocksWide = (uniforms.pointee.width + 15) / 16
     uniforms.pointee.frameIndex = frameIndex
     frameIndex += 1
-    uniformBuffer?.didModifyRange(uniformBufferOffset..<(uniformBufferOffset + alignedUniformsSize))
-    randomBufferOffset = 256 * MemoryLayout<float2>.stride * uniformBufferIndex
+    //uniformBuffer?.didModifyRange(uniformBufferOffset..<(uniformBufferOffset + alignedUniformsSize))
+    randomBufferOffset = 256 * MemoryLayout<SIMD2<Float>>.stride * uniformBufferIndex
     let p = randomBuffer!.contents().advanced(by: randomBufferOffset)
-    var random = p.bindMemory(to: float2.self, capacity: 1)
+    var random = p.bindMemory(to: SIMD2<Float>.self, capacity: 1)
     for _ in 0..<256 {
-      random.pointee = float2(Float(drand48()), Float(drand48()) )
+      random.pointee = SIMD2<Float>(Float(drand48()), Float(drand48()) )
       random = random.advanced(by: 1)
     }
-    randomBuffer?.didModifyRange(randomBufferOffset..<(randomBufferOffset + 256 * MemoryLayout<float2>.stride))
+    //randomBuffer?.didModifyRange(randomBufferOffset..<(randomBufferOffset + 256 * MemoryLayout<SIMD2<Float>>.stride))
     uniformBufferIndex = (uniformBufferIndex + 1) % maxFramesInFlight
   }
 }

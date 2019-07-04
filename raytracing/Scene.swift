@@ -6,9 +6,9 @@
 
 import simd
 
-var vertices = [float3]()
-var normals = [float3]()
-var colors = [float3]()
+var vertices = [SIMD3<Float>]()
+var normals = [SIMD3<Float>]()
+var colors = [SIMD3<Float>]()
 var masks = [uint]()
 
 struct Faces: OptionSet {
@@ -23,14 +23,14 @@ struct Faces: OptionSet {
   static let all       = Faces(rawValue: 64)
 }
 
-func getTriangleNormal(v0: float3, v1: float3, v2: float3) -> float3 {
+func getTriangleNormal(v0: SIMD3<Float>, v1: SIMD3<Float>, v2: SIMD3<Float>) -> SIMD3<Float> {
   let e1 = normalize(v1 - v0)
   let e2 = normalize(v2 - v0)
   return cross(e1, e2)
 }
 
-func createCubeFace(cubeVertices: [float3],
-                    color: float3,
+func createCubeFace(cubeVertices: [SIMD3<Float>],
+                    color: SIMD3<Float>,
                     i0: Int,
                     i1: Int,
                     i2: Int,
@@ -58,27 +58,27 @@ func createCubeFace(cubeVertices: [float3],
 }
 
 func createCube(faceMask: Faces,
-                color: float3,
+                color: SIMD3<Float>,
                 transform: float4x4,
                 inwardNormals: Bool,
                 triangleMask: Int32)
 {
   var cubeVertices = [
-    float3(-0.5, -0.5, -0.5),
-    float3( 0.5, -0.5, -0.5),
-    float3(-0.5,  0.5, -0.5),
-    float3( 0.5,  0.5, -0.5),
-    float3(-0.5, -0.5,  0.5),
-    float3( 0.5, -0.5,  0.5),
-    float3(-0.5,  0.5,  0.5),
-    float3( 0.5,  0.5,  0.5)
+    SIMD3<Float>(-0.5, -0.5, -0.5),
+    SIMD3<Float>( 0.5, -0.5, -0.5),
+    SIMD3<Float>(-0.5,  0.5, -0.5),
+    SIMD3<Float>( 0.5,  0.5, -0.5),
+    SIMD3<Float>(-0.5, -0.5,  0.5),
+    SIMD3<Float>( 0.5, -0.5,  0.5),
+    SIMD3<Float>(-0.5,  0.5,  0.5),
+    SIMD3<Float>( 0.5,  0.5,  0.5)
   ]
   
   for i in 0...7 {
     let vertex = cubeVertices[i]
-    var transformedVertex = float4(vertex.x, vertex.y, vertex.z, 1.0)
+    var transformedVertex = SIMD4<Float>(vertex.x, vertex.y, vertex.z, 1.0)
     transformedVertex = transform * transformedVertex
-    cubeVertices[i] = float3(transformedVertex.x, transformedVertex.y, transformedVertex.z)
+    cubeVertices[i] = SIMD3<Float>(transformedVertex.x, transformedVertex.y, transformedVertex.z)
   }
   if faceMask.contains(.negativeX) || faceMask.contains(.all) {
     createCubeFace(cubeVertices: cubeVertices, color: color, i0: 0, i1: 4, i2: 6, i3: 2, inwardNormals: inwardNormals, triangleMask: uint(triangleMask))

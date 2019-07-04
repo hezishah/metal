@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,15 @@
 		299402A320F1703F00AF5474 /* ShaderTypes.h in Resources */ = {isa = PBXBuildFile; fileRef = 2994027C20F1703D00AF5474 /* ShaderTypes.h */; };
 		299402B020F1BB5800AF5474 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299402AE20F1BB5800AF5474 /* Scene.swift */; };
 		299402B320F1D0E600AF5474 /* Transforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299402B120F1D0E600AF5474 /* Transforms.swift */; };
+		83539E2B22CE1C1600CBE518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83539E2A22CE1C1600CBE518 /* AppDelegate.swift */; };
+		83539E3022CE1C1600CBE518 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83539E2F22CE1C1600CBE518 /* GameViewController.swift */; };
+		83539E3522CE1C1600CBE518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83539E3322CE1C1600CBE518 /* Main.storyboard */; };
+		83539E3722CE1C1700CBE518 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83539E3622CE1C1700CBE518 /* Assets.xcassets */; };
+		83539E3A22CE1C1700CBE518 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83539E3822CE1C1700CBE518 /* LaunchScreen.storyboard */; };
+		83539E3F22CE1D3F00CBE518 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2994027B20F1703D00AF5474 /* Renderer.swift */; };
+		83539E4022CE1D4C00CBE518 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 2994027A20F1703D00AF5474 /* Shaders.metal */; };
+		83539E4222CE1D7000CBE518 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299402AE20F1BB5800AF5474 /* Scene.swift */; };
+		83539E4322CE1D7000CBE518 /* Transforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299402B120F1D0E600AF5474 /* Transforms.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +37,25 @@
 		2994029D20F1703F00AF5474 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299402AE20F1BB5800AF5474 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		299402B120F1D0E600AF5474 /* Transforms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transforms.swift; sourceTree = "<group>"; };
+		83539E2822CE1C1600CBE518 /* RayTraceMetal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayTraceMetal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83539E2A22CE1C1600CBE518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		83539E2F22CE1C1600CBE518 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		83539E3422CE1C1600CBE518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		83539E3622CE1C1700CBE518 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		83539E3922CE1C1700CBE518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		83539E3B22CE1C1700CBE518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83DF625122CE47E200E03914 /* ShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2994029120F1703F00AF5474 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83539E2522CE1C1600CBE518 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -44,12 +68,14 @@
 		2994027420F1703D00AF5474 = {
 			isa = PBXGroup;
 			children = (
+				83DF625122CE47E200E03914 /* ShaderTypes.h */,
 				2994027B20F1703D00AF5474 /* Renderer.swift */,
 				299402AE20F1BB5800AF5474 /* Scene.swift */,
 				299402B120F1D0E600AF5474 /* Transforms.swift */,
 				2994027A20F1703D00AF5474 /* Shaders.metal */,
 				2994027C20F1703D00AF5474 /* ShaderTypes.h */,
 				29CED22920F7B1FC00B26108 /* Supporting files */,
+				83539E2922CE1C1600CBE518 /* RayTraceMetal */,
 				2994028320F1703F00AF5474 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				2994029420F1703F00AF5474 /* RayTracing.app */,
+				83539E2822CE1C1600CBE518 /* RayTraceMetal.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,6 +98,19 @@
 				2994029D20F1703F00AF5474 /* Info.plist */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		83539E2922CE1C1600CBE518 /* RayTraceMetal */ = {
+			isa = PBXGroup;
+			children = (
+				83539E2A22CE1C1600CBE518 /* AppDelegate.swift */,
+				83539E2F22CE1C1600CBE518 /* GameViewController.swift */,
+				83539E3322CE1C1600CBE518 /* Main.storyboard */,
+				83539E3622CE1C1700CBE518 /* Assets.xcassets */,
+				83539E3822CE1C1700CBE518 /* LaunchScreen.storyboard */,
+				83539E3B22CE1C1700CBE518 /* Info.plist */,
+			);
+			path = RayTraceMetal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,22 +133,43 @@
 			productReference = 2994029420F1703F00AF5474 /* RayTracing.app */;
 			productType = "com.apple.product-type.application";
 		};
+		83539E2722CE1C1600CBE518 /* RayTraceMetal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83539E3E22CE1C1700CBE518 /* Build configuration list for PBXNativeTarget "RayTraceMetal" */;
+			buildPhases = (
+				83539E2422CE1C1600CBE518 /* Sources */,
+				83539E2522CE1C1600CBE518 /* Frameworks */,
+				83539E2622CE1C1600CBE518 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RayTraceMetal;
+			productName = RayTraceMetal;
+			productReference = 83539E2822CE1C1600CBE518 /* RayTraceMetal.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		2994027520F1703D00AF5474 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1000;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1000;
 				TargetAttributes = {
 					2994029320F1703F00AF5474 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1100;
 					};
+					83539E2722CE1C1600CBE518 = {
+						CreatedOnToolsVersion = 11.0;
 				};
 			};
+			};
 			buildConfigurationList = 2994027820F1703D00AF5474 /* Build configuration list for PBXProject "RayTracing" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -121,6 +182,7 @@
 			projectRoot = "";
 			targets = (
 				2994029320F1703F00AF5474 /* RayTracing */,
+				83539E2722CE1C1600CBE518 /* RayTraceMetal */,
 			);
 		};
 /* End PBXProject section */
@@ -132,6 +194,16 @@
 			files = (
 				2994029C20F1703F00AF5474 /* Main.storyboard in Resources */,
 				299402A320F1703F00AF5474 /* ShaderTypes.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83539E2622CE1C1600CBE518 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83539E3A22CE1C1700CBE518 /* LaunchScreen.storyboard in Resources */,
+				83539E3722CE1C1700CBE518 /* Assets.xcassets in Resources */,
+				83539E3522CE1C1600CBE518 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +223,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		83539E2422CE1C1600CBE518 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83539E4222CE1D7000CBE518 /* Scene.swift in Sources */,
+				83539E4322CE1D7000CBE518 /* Transforms.swift in Sources */,
+				83539E4022CE1D4C00CBE518 /* Shaders.metal in Sources */,
+				83539E3F22CE1D3F00CBE518 /* Renderer.swift in Sources */,
+				83539E3022CE1C1600CBE518 /* GameViewController.swift in Sources */,
+				83539E2B22CE1C1600CBE518 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -160,6 +245,22 @@
 				2994029B20F1703F00AF5474 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		83539E3322CE1C1600CBE518 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83539E3422CE1C1600CBE518 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		83539E3822CE1C1700CBE518 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83539E3922CE1C1700CBE518 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -221,6 +322,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -273,6 +375,7 @@
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -293,7 +396,7 @@
 				PRODUCT_NAME = RayTracing;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = ShaderTypes.h;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -314,7 +417,52 @@
 				PRODUCT_NAME = RayTracing;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = ShaderTypes.h;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		83539E3C22CE1C1700CBE518 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZM36V475HP;
+				HEADER_SEARCH_PATHS = "../**";
+				INFOPLIST_FILE = RayTraceMetal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hezi.RayTraceMetal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/../ShaderTypes.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		83539E3D22CE1C1700CBE518 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZM36V475HP;
+				HEADER_SEARCH_PATHS = "../**";
+				INFOPLIST_FILE = RayTraceMetal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hezi.RayTraceMetal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/../ShaderTypes.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -335,6 +483,15 @@
 			buildConfigurations = (
 				299402AC20F1703F00AF5474 /* Debug */,
 				299402AD20F1703F00AF5474 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83539E3E22CE1C1700CBE518 /* Build configuration list for PBXNativeTarget "RayTraceMetal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83539E3C22CE1C1700CBE518 /* Debug */,
+				83539E3D22CE1C1700CBE518 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
